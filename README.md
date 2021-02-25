@@ -1,4 +1,4 @@
-# Auth Guard Admin Level, Laravel 7 (Example)
+# Auth Guard Admin dengan Level, Laravel 7 (Example)
 Project ini hanya script contoh membuat auth guard (admin) pada laravel 7.
 
 ## Instalasi
