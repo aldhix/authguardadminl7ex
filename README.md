@@ -20,7 +20,9 @@ php artisan make:controller HomeAdminController
 ```
 ## Setting & Configurasi file
 edit [file .env](https://github.com/aldhix/authguardadminl7ex/blob/main/.env) untuk mengkonfigurasi database.
+
 edit [file config\database.php](https://github.com/aldhix/authguardadminl7ex/blob/main/config/database.php) untuk mengkonfigurasi database.
+
 edit [file config\auth.php](https://github.com/aldhix/authguardadminl7ex/blob/main/config/auth.php) untuk menkonfigurasi guard dan provider :
 ```sh
 'guards' => [
@@ -51,7 +53,9 @@ return [
 ## Migrations & Seeder
 
 edit [file database\migrations\...create_admins_table.php](https://github.com/aldhix/authguardadminl7ex/blob/main/database/migrations/2021_02_25_005025_create_admins_table.php) untuk membuat tabel admins.
+
 edit [file database\seeds\AdminSeeder.php](https://github.com/aldhix/authguardadminl7ex/blob/main/database/seeds/AdminSeeder.php) menambahkan data admin degan level super dan admin dengan level admin (biasa)
+
 edit [file database\seeds\DatabaseSeeder.php](https://github.com/aldhix/authguardadminl7ex/blob/main/database/seeds/DatabaseSeeder.php) untuk memanggil seeder AdminSeeder.
 
 ## Model 
@@ -67,6 +71,7 @@ Selanjutnya pada method profile() dapat di akses oleh level super dan admin kare
 ```sh
 Gate::authorize('level',['super','admin']);
 ```
+
 edit [file app\Http\Controllers\AdminAuth\LoginAdminController.php](https://github.com/aldhix/authguardadminl7ex/tree/main/app/Http/Controllers/AdminAuth) untuk membuat method loginForm(), login(), dan logout().
 
 ## Middleware & Service Provider
@@ -76,6 +81,7 @@ Gate::define('level', function($user, ...$level){
     return in_array($user->level, $level);
 });
 ```
+
 edit [file app\Http\Middleware\Authenticate.php](https://github.com/aldhix/authguardadminl7ex/blob/main/app/Http/Middleware/Authenticate.php) mengarahkan yang tidak memiliki authentic pada path admin akan diarahkan ke halaman login admin.
 ```sh
 if($request->is( config('admin.path').'*') ){
@@ -83,6 +89,7 @@ if($request->is( config('admin.path').'*') ){
 }
 .....
 ```
+
 edit [file app\Http\Middleware\RedirectIfAuthenticated.php](https://github.com/aldhix/authguardadminl7ex/blob/main/app/Http/Middleware/RedirectIfAuthenticated.php) mengarahkan halaman apabila memiliki authentic guard admin ke halaman home admin.
 ```sh
 if( $guard == 'admin' ){
@@ -119,6 +126,7 @@ if(request()->is( config('admin.path').'*')){
     $title = 'Login';
 }
 ```
+
 edit [file resource\views\layouts\app.blade.php](https://github.com/aldhix/authguardadminl7ex/blob/main/resources/views/layouts/app.blade.php) tidak jauh berbeda dengan login hanya meminjam layout bawaan laravel, dan pada bagian logout akan di arahkan apabila halaman pada path admin.
 ```sh
 if(request()->is( config('admin.path').'*')){
@@ -151,5 +159,7 @@ php artisan db:seed
 php artisan serve
 ```
 untuk akses halaman admin [http:/localhost:8000/admin](http:/localhost:8000/admin),
+
 email : admin@localhost.com
+
 password : 12345678
