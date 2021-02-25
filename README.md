@@ -106,7 +106,7 @@ edit [file resource\views\home.blade.php](https://github.com/aldhix/authguardadm
 </div>
 @endcan
 ```
-pada perintah diatas akan alert akan muncul jika otorasi level adminnya super. Apabila ingin menambahkan level lebih dari satu otosainya gunakan array, sebagai contoh :
+pada perintah diatas alert akan muncul jika otorasi level adminnya super. Apabila ingin menambahkan level lebih dari satu otosainya gunakan array, sebagai contoh :
 ```sh
 @can('level',['super','admin'])
 <div class="alert alert-warning" role="alert">
